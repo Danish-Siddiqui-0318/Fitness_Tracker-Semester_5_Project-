@@ -1,0 +1,67 @@
+Fitness Tracker Project – MVP (Minimum Viable Product)
+
+Project Overview
+
+• The Fitness Tracker is a web-based application designed to help users manage and monitor their fitness activities.
+• The MVP focuses on core fitness tracking features required to demonstrate real-life application development.
+
+User Management
+
+• Users can register by providing a username, email, and password.
+• Registered users can log in securely to the system.
+• Each user has a basic profile containing name and email.
+• Users can update basic profile information.
+
+Workout Tracking
+
+• Users can add workout details including exercise name, sets, reps, and weight.
+• Users can view a list of their recorded workouts.
+• Users can edit or delete workout entries.
+• Workout data is stored separately for each user.
+
+Nutrition Tracking
+
+• Users can log daily meals.
+• Each meal entry includes meal type and calorie count.
+• Users can view their daily nutrition logs.
+
+Progress Tracking
+
+• Users can record their body weight on different dates.
+• The application stores and displays weight history.
+• Progress helps users monitor fitness improvement over time.
+
+Dashboard
+
+• A simple dashboard is displayed after user login.
+• The dashboard shows recent workouts, recent meal entries, and latest weight record.
+• Provides a quick overview of the user’s fitness activity.
+
+Data Visualization
+
+• A basic graph is used to display weight progress over time.
+• Simple visual representation improves understanding of fitness trends.
+
+Mobile Responsiveness
+
+• The application is responsive and works on desktops, tablets, and mobile devices.
+• The layout adapts to different screen sizes.
+
+Security
+
+• User passwords are securely encrypted.
+• Authentication is implemented to protect user data.
+• Users can access only their own information.
+
+Technology Stack
+
+• MongoDB is used for database storage.
+• Node.js and Express.js handle backend logic and APIs.
+• React.js is used for the frontend interface.
+• Basic CSS or Tailwind CSS is used for styling.
+
+Project Outcome
+
+• A functional fitness tracking application is successfully developed.
+• The project demonstrates practical implementation of web technologies.
+• The MVP provides a strong foundation for future enhancements.
