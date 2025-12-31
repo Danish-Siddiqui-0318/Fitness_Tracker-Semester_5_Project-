@@ -27,6 +27,6 @@ var mealSchema = mongoose.Schema(
     }
 )
 
-var mealModel = mongoose.model("Meals", mealModel)
+var mealModel = mongoose.model("Meals", mealSchema)
 
 module.exports = mealModel  

@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
         trim: true,
         match: [emailRegex, "Email should be valid"]
     },
-    passwrod: {
+    password: {
         type: String,
         required: [true, "password is required"],
         trim: true,

@@ -14,7 +14,7 @@ async function registerUser(req, res) {
         res.status(400)
         throw new Error("this email is already registered")
     }
-    var salt = bcrypt.genSalt(10)
+    var salt = await bcrypt.genSalt(10)
     var encryptedPassword = await bcrypt.hash(password, salt)
     var userData = await UserModel.create({
         name,
@@ -49,7 +49,12 @@ async function loginUser(req, res) {
         }
 
         var token = jwt.sign(
-            { id: user._id },
+
+            {
+                _id: user._id,
+                name: user.name,
+                email: user.email
+            },
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
         )
@@ -58,11 +63,6 @@ async function loginUser(req, res) {
             success: true,
             message: "login successful",
             token: token,
-            data: {
-                _id: user._id,
-                name: user.name,
-                email: user.email
-            }
         })
     } catch (error) {
         res.status(500).json({ message: error.message })
