@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function SignupPage() {
@@ -21,18 +21,28 @@ function SignupPage() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const apiUrl = "http://localhost:3000/auth/register";
-        const response = await axios.post(apiUrl, formData);
-        Swal.fire({
-            title: "Registered Successfully",
-            text: response.data.message,
-            icon: "success"
-        });
-        navigate("/login")
+        try {
+            const apiUrl = "http://localhost:3000/auth/register";
+            const response = await axios.post(apiUrl, formData);
+
+            Swal.fire({
+                title: "Registered Successfully",
+                text: response.data.message,
+                icon: "success",
+            });
+
+            navigate("/login");
+        } catch (error) {
+            Swal.fire({
+                title: "Registration Failed",
+                text: error.response?.data?.message || "Something went wrong",
+                icon: "error",
+            });
+        }
     }
 
     return (
-        <div className="min-h-screen flex fle-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-center">
             <div className="py-6 px-4">
                 <div className="grid lg:grid-cols-2 items-center gap-6 max-w-6xl w-full">
                     <div className="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-lg:mx-auto">
@@ -107,12 +117,11 @@ function SignupPage() {
                                 </button>
                                 <p className="text-sm !mt-6 text-center text-slate-600">
                                     Already have an account?
-                                    <a
-                                        href="javascript:void(0);"
+                                    <Link to="/login"
                                         className="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap"
                                     >
                                         Sign in
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
                         </form>

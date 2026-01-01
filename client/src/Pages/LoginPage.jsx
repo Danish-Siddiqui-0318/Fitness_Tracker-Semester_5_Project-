@@ -19,18 +19,29 @@ function LoginPage() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const apiUrl = "http://localhost:3000/auth/login";
-        const response = await axios.post(apiUrl, formData);
-        localStorage.setItem("token", response.data.token)
-        Swal.fire({
-            title: "Logged In Successfully",
-            text: response.data.message,
-            icon: "success"
-        });
-        navigate("/")
+        try {
+            const apiUrl = "http://localhost:3000/auth/login";
+            const response = await axios.post(apiUrl, formData);
+
+            localStorage.setItem("token", response.data.token);
+
+            Swal.fire({
+                title: "Logged In Successfully",
+                text: response.data.message,
+                icon: "success",
+            });
+
+            navigate("/");
+        } catch (error) {
+            Swal.fire({
+                title: "Login Failed",
+                text: error.response?.data?.message || "Something went wrong",
+                icon: "error",
+            });
+        }
     }
     return (
-        <div className="min-h-screen flex fle-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-center">
             <div className="py-6 px-4">
                 <div className="grid lg:grid-cols-2 items-center gap-6 max-w-6xl w-full">
                     <div className="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-lg:mx-auto">
@@ -96,7 +107,7 @@ function LoginPage() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-wrap items-center justify-between gap-4">
+                            {/* <div className="flex flex-wrap items-center justify-between gap-4">
                                 <div className="flex items-center">
                                     <input
                                         id="remember-me"
@@ -119,25 +130,27 @@ function LoginPage() {
                                         Forgot your password?
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="!mt-12">
                                 <button
                                     type="submit"
                                     className="w-full shadow-xl py-2.5 px-4 text-[15px] font-medium tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer"
                                 >
-                                    Sign in
+                                    Login Now
                                 </button>
-                                <p className="text-sm !mt-6 text-center text-slate-600">
-                                    Don't have an account
-                                    <a
-                                        href="javascript:void(0);"
-                                        className="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap"
-                                    >
-                                        Register here
-                                    </a>
-                                </p>
+                                <button
+                                    type="button"
+                                    className="w-full shadow-xl py-2.5 my-4 px-4 text-[15px] font-medium tracking-wide rounded-lg
+                                                 text-blue-600 border-2 border-blue-600
+             hover:bg-blue-600 hover:text-white
+             focus:outline-none cursor-pointer transition"
+                                    onClick={() => { navigate("/signup") }}
+                                >
+                                    Sign Up
+                                </button>
                             </div>
+
                         </form>
                     </div>
 
