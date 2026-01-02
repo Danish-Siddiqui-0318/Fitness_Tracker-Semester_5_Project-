@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
     const navigate = useNavigate()
@@ -41,23 +42,23 @@ function LoginPage() {
         }
     }
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
             <div className="py-6 px-4">
                 <div className="grid lg:grid-cols-2 items-center gap-6 max-w-6xl w-full">
-                    <div className="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-lg:mx-auto">
+                    <div className="rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-lg:mx-auto">
                         <form className="space-y-6" onSubmit={handleSubmit}>
                             <div className="mb-12">
-                                <h1 className="text-slate-900 text-3xl font-semibold">
+                                <h1 className="text-3xl font-semibold">
                                     Login Now
                                 </h1>
-                                <p className="text-slate-600 text-[15px] mt-6 leading-relaxed">
+                                <p className=" text-[15px] mt-6 leading-relaxed">
                                     Sign in to your account and explore a world of possibilities.
                                     Your journey begins here.
                                 </p>
                             </div>
 
                             <div>
-                                <label className="text-slate-900 text-sm font-medium mb-2 block">
+                                <label className="text-sm font-medium mb-2 block">
                                     Email
                                 </label>
                                 <div className="relative flex items-center">
@@ -66,7 +67,7 @@ function LoginPage() {
                                         name="email"
                                         type="email"
                                         required
-                                        className="w-full text-sm text-slate-900 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
+                                        className="w-full text-sm  border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
                                         placeholder="Enter email "
                                     />
                                     <svg
@@ -83,7 +84,7 @@ function LoginPage() {
                             </div>
 
                             <div>
-                                <label className="text-slate-900 text-sm font-medium mb-2 block">
+                                <label className=" text-sm font-medium mb-2 block">
                                     Password
                                 </label>
                                 <div className="relative flex items-center">
@@ -92,7 +93,7 @@ function LoginPage() {
                                         name="password"
                                         type="password"
                                         required
-                                        className="w-full text-sm text-slate-900 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
+                                        className="w-full text-sm  border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
                                         placeholder="Enter password"
                                     />
                                     <svg
@@ -117,7 +118,7 @@ function LoginPage() {
                                     />
                                     <label
                                         htmlFor="remember-me"
-                                        className="ml-3 block text-sm text-slate-900"
+                                        className="ml-3 block text-sm "
                                     >
                                         Remember me
                                     </label>
@@ -135,20 +136,18 @@ function LoginPage() {
                             <div className="!mt-12">
                                 <button
                                     type="submit"
-                                    className="w-full shadow-xl py-2.5 px-4 text-[15px] font-medium tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer"
+                                    className="w-full shadow-xl py-2.5 px-4 text-[15px] font-medium tracking-wide rounded-lg text-white bg-green-500 hover:bg-green-600 focus:outline-none cursor-pointer"
                                 >
                                     Login Now
                                 </button>
-                                <button
-                                    type="button"
-                                    className="w-full shadow-xl py-2.5 my-4 px-4 text-[15px] font-medium tracking-wide rounded-lg
-                                                 text-blue-600 border-2 border-blue-600
-             hover:bg-blue-600 hover:text-white
-             focus:outline-none cursor-pointer transition"
-                                    onClick={() => { navigate("/signup") }}
-                                >
-                                    Sign Up
-                                </button>
+                                <p className="text-sm !mt-6 text-center text-white">
+                                    Dont have an account?
+                                    <Link to="/signup"
+                                        className="text-green-500 font-medium hover:underline ml-1 whitespace-nowrap"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </p>
                             </div>
 
                         </form>
@@ -156,7 +155,7 @@ function LoginPage() {
 
                     <div className="max-lg:mt-8">
                         <img
-                            src="https://readymadeui.com/login-image.webp"
+                            src="https://i.ibb.co/XZ8KYC2n/Gemini-Generated-Image-j8xrtdj8xrtdj8xr.png"
                             className="w-full aspect-[71/50] max-lg:w-4/5 mx-auto block object-cover"
                             alt="login img"
                         />

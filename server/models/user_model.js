@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
         type: String,
         required: [true, "password is required"],
         trim: true,
-        minlenght: 6
+        minlength: 6
     }
 })
 

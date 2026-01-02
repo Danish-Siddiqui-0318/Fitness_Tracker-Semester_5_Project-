@@ -4,12 +4,12 @@ import SignupPage from "./Pages/Signup";
 import LoginPage from "./Pages/LoginPage";
 import PublicRoute from "./Components/PublicRoute";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import ProfilePage from "./Pages/ProflePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Protected Home */}
         <Route
           path="/"
           element={
@@ -18,8 +18,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Public Routes */}
         <Route
           path="/login"
           element={
@@ -34,6 +32,24 @@ function App() {
             <PublicRoute>
               <SignupPage />
             </PublicRoute>
+          }
+        />
+        <Route
+          path="/workout"
+          element={
+            <SignupPage />
+          }
+        />
+        <Route
+          path="/calories"
+          element={
+            <SignupPage />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProfilePage />
           }
         />
       </Routes>

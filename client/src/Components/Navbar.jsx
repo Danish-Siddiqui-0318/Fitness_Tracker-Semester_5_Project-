@@ -21,7 +21,7 @@ export default function Navbar() {
         navigate("/login")
     }
     return (
-        <nav className="bg-slate-900 text-white">
+        <nav className="fixed top-0 left-0 w-full h-14 bg-black z-50 text-white">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="relative flex items-center h-16">
 
@@ -33,9 +33,9 @@ export default function Navbar() {
                     {/* Center Links (Desktop) */}
                     <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex space-x-8">
                         <Link to="/" className="hover:text-slate-300">Home</Link>
-                        <Link to="/about" className="hover:text-slate-300">About</Link>
-                        <Link to="/services" className="hover:text-slate-300">Services</Link>
-                        <Link to="/contact" className="hover:text-slate-300">Contact</Link>
+                        <Link to="/workout" className="hover:text-slate-300">Workout</Link>
+                        <Link to="/calories" className="hover:text-slate-300">Calories</Link>
+                        <Link to="/profile" className="hover:text-slate-300"></Link>
                     </div>
 
                     {/* Right Buttons (Desktop) */}
