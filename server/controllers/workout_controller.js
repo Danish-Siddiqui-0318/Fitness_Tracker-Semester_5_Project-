@@ -4,11 +4,28 @@ async function getAllWorkoutOfUser(req, res) {
     var userId = req.params.id
     var workouts = await WorkOutModel.find({ user_id: userId })
     if (!workouts || workouts.length === 0) {
-        res.status(404);
+        res.status(404).json({ message: "No workout exist yet" });
         throw new Error("No workout found. Add a Workout")
     }
 
     res.status(200).json(workouts)
+}
+
+
+async function getSingleWorkout(req, res) {
+    try {
+        const workoutId = req.params.id
+
+        const workout = await WorkOutModel.findById(workoutId)
+
+        if (!workout) {
+            return res.status(404).json({ message: "Workout not found" })
+        }
+
+        res.status(200).json(workout)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 }
 
 async function postWorkOut(req, res) {
@@ -45,4 +62,4 @@ async function DeleteWorkout(req, res) {
     res.status(200).json({ message: "Workout Deleted" })
 }
 
-module.exports = { getAllWorkoutOfUser, postWorkOut, UpdateWorkout, DeleteWorkout }
+module.exports = { getAllWorkoutOfUser, postWorkOut, UpdateWorkout, DeleteWorkout, getSingleWorkout }

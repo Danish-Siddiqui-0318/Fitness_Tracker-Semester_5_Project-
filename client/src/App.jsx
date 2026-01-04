@@ -5,6 +5,10 @@ import LoginPage from "./Pages/LoginPage";
 import PublicRoute from "./Components/PublicRoute";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ProfilePage from "./Pages/ProflePage";
+import Workout from "./Pages/Workout";
+import Calories from "./Pages/Calories";
+import ExerciseForm from "./Pages/AddWorkout";
+import UpdateWorkoutPage from "./Pages/UpdateWorkout";
 
 function App() {
   return (
@@ -37,19 +41,31 @@ function App() {
         <Route
           path="/workout"
           element={
-            <SignupPage />
+            <Workout />
           }
         />
         <Route
           path="/calories"
           element={
-            <SignupPage />
+            <Calories />
           }
         />
         <Route
           path="/profile"
           element={
             <ProfilePage />
+          }
+        />
+        <Route
+          path="/addWorkout"
+          element={
+            <ExerciseForm />
+          }
+        />
+        <Route
+          path="/updateWorkout/:id"
+          element={
+            <UpdateWorkoutPage />
           }
         />
       </Routes>

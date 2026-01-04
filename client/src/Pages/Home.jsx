@@ -4,7 +4,7 @@ import { Hero } from '../Components/Hero'
 
 function Home() {
   return (
-    <div className='bg-black text-white min-h-screen pt-14' >
+    <div className=' text-black min-h-screen pt-14' >
       <Navbar />
       <Hero />
     </div>

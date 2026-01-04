@@ -37,7 +37,7 @@ export function Hero() {
     }
 
     return (
-        <div className="relative w-full text-white mt-14">
+        <div className="relative w-full text-black mt-14">
             <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
                 <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
                     <h1 className="mt-8 text-3xl font-bold tracking-tight md:text-4xl lg:text-6xl ">
@@ -61,13 +61,13 @@ export function Hero() {
                     <div className="mt-8 flex items-center space-x-4">
                         <button
                             type="button"
-                            className="rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                            className="rounded-md bg-green-700 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         >
                             Check Your Workout
                         </button>
                         <button
                             type="button"
-                            className="rounded-md border border-black px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-100 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                            className="rounded-md border border-black px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-gray-100 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                         >
                             Check Your Calories
                         </button>
