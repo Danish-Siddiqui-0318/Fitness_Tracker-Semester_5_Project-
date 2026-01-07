@@ -1,33 +1,46 @@
 var UserModel = require('../models/user_model')
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
+var WeightModel=require("../models/weight_model")
 
 // register acoount 
 async function registerUser(req, res) {
-    var { name, email, password } = req.body;
-    if (!name || !email || !password) {
-        res.status(400)
-        throw new Error("Plase Provide the fields")
+    const { name, email, password, weight } = req.body;
+
+    if (!name || !email || !password || !weight) {
+        res.status(400);
+        throw new Error("Please provide all fields including weight");
     }
-    var userExist = await UserModel.findOne({ email })
+
+    const userExist = await UserModel.findOne({ email });
     if (userExist) {
-        res.status(400)
-        throw new Error("this email is already registered")
+        res.status(400);
+        throw new Error("This email is already registered");
     }
-    var salt = await bcrypt.genSalt(10)
-    var encryptedPassword = await bcrypt.hash(password, salt)
-    var userData = await UserModel.create({
+
+    const salt = await bcrypt.genSalt(10);
+    const encryptedPassword = await bcrypt.hash(password, salt);
+
+    // 1️⃣ Create user
+    const userData = await UserModel.create({
         name,
         email,
         password: encryptedPassword
-    })
+    });
+
+    // 2️⃣ Create initial weight entry
+    await WeightModel.create({
+        user_id: userData._id,
+        weight: weight
+    });
 
     res.status(201).json({
         success: true,
-        message: "Account is Created",
+        message: "Account created successfully",
         data: userData
-    })
+    });
 }
+
 
 async function loginUser(req, res) {
     try {

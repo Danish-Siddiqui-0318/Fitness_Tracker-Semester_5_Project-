@@ -19,7 +19,7 @@ var userSchema = mongoose.Schema({
         required: [true, "password is required"],
         trim: true,
         minlength: 6
-    }
+    },
 })
 
 var UserModel = mongoose.model("Users", userSchema)

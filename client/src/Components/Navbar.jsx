@@ -128,7 +128,7 @@ export default function Navbar() {
             {/* Right Side - Logout & Profile */}
             <div className="hidden md:flex items-center space-x-4">
               {/* Notification Bell */}
-              <button className="relative p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-300">
+              {/* <button className="relative p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-300">
                 <svg
                   className="w-5 h-5 text-gray-400 hover:text-cyan-400"
                   fill="none"
@@ -143,7 +143,7 @@ export default function Navbar() {
                   ></path>
                 </svg>
                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"></span>
-              </button>
+              </button> */}
 
               {/* Logout Button */}
               <button

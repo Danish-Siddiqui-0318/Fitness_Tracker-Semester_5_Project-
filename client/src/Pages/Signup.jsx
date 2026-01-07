@@ -8,7 +8,8 @@ function SignupPage() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        weight: ""
     });
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -52,6 +53,20 @@ function SignupPage() {
             Swal.fire({
                 title: "Password Mismatch",
                 text: "Passwords do not match. Please try again.",
+                icon: "error",
+                background: '#0a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#183D3D',
+            });
+            return;
+        }
+
+        // Validate weight
+        const weight = parseFloat(formData.weight);
+        if (!weight || weight < 30 || weight > 300) {
+            Swal.fire({
+                title: "Invalid Weight",
+                text: "Please enter a valid weight between 30 and 300 kg.",
                 icon: "error",
                 background: '#0a1a1a',
                 color: '#ffffff',
@@ -275,6 +290,39 @@ function SignupPage() {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Weight Field - NEW FIELD ADDED */}
+                                <div>
+                                    <label className="block text-sm font-medium mb-3 text-gray-300">
+                                        Current Weight
+                                    </label>
+                                    <div className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-xl blur-sm group-hover:blur transition-all duration-300"></div>
+                                        <div className="relative">
+                                            <input
+                                                onChange={handleChange}
+                                                name="weight"
+                                                type="number"
+                                                required
+                                                min="30"
+                                                max="300"
+                                                step="0.1"
+                                                className="w-full bg-gray-900/50 border border-gray-700/50 pl-12 pr-16 py-4 rounded-xl outline-none focus:border-yellow-500/50 focus:ring-2 focus:ring-yellow-500/20 transition-all duration-300"
+                                                placeholder="e.g., 75.5"
+                                            />
+                                            <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                                                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                                </svg>
+                                            </div>
+                                            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
+                                                <span className="text-yellow-400 font-medium">kg</span>
+                                                <span className="text-gray-500 text-xs">(kilograms)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="text-xs text-gray-500 mt-2">Enter your current body weight in kilograms (30-300 kg)</p>
                                 </div>
 
                                 {/* Password field */}

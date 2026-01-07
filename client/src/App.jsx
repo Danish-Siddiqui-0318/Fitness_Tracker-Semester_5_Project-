@@ -42,37 +42,49 @@ function App() {
         <Route
           path="/workout"
           element={
-            <Workout />
+            <ProtectedRoute>
+              <Workout />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/calories"
           element={
-            <Calories />
+            <ProtectedRoute>
+              <Calories />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/profile"
           element={
-            <ProfilePage />
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/addWorkout"
           element={
-            <ExerciseForm />
+            <ProtectedRoute>
+              <ExerciseForm />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/updateWorkout/:id"
           element={
-            <UpdateWorkoutPage />
+            <ProtectedRoute>
+              <UpdateWorkoutPage />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/addCalories"
           element={
-            <AddCalories />
+            <ProtectedRoute>
+              <AddCalories />
+            </ProtectedRoute>
           }
         />
       </Routes>
