@@ -1,47 +1,83 @@
 var MealModel = require('../models/meal_model')
 
 async function getAllMealOfUser(req, res) {
-    var userId = req.params.id
-    var meals = await MealModel.find({ user_id: userId })
-    if (!meals || meals.length === 0) {
-        res.status(404);
-        throw new Error("No Meal Found. Add a new Meal")
-    }
+    try {
+        var userId = req.params.id
+        var meals = await MealModel.find({ user_id: userId })
+            .sort({ date: -1, time: -1 }) // Sort by most recent
 
-    res.status(200).json(meals)
+        if (!meals || meals.length === 0) {
+            res.status(404).json({ message: "No Meal Found. Add a new Meal" })
+            return
+        }
+
+        res.status(200).json(meals)
+    } catch (error) {
+        console.error("Error fetching meals:", error)
+        res.status(500).json({ message: "Server error", error: error.message })
+    }
 }
 
 async function postMeal(req, res) {
-    var { user_id, mealType, calories, date } = req.body;
-    if (!user_id || !mealType || !calories || !date) {
-        res.status(400)
-        throw new Error("All fields are required")
-    }
+    try {
+        var { user_id, mealType, foodName, calories, description, time } = req.body;
 
-    var newMeal = await MealModel.create(
-        {
+        // Validate required fields
+        if (!user_id || !mealType || !foodName || !calories) {
+            res.status(400).json({ message: "User ID, meal type, food name, and calories are required" })
+            return
+        }
+
+        // Validate mealType enum
+        const validMealTypes = ["Breakfast", "Lunch", "Dinner", "Snacks"]
+        if (!validMealTypes.includes(mealType)) {
+            res.status(400).json({ message: "Invalid meal type. Must be Breakfast, Lunch, Dinner, or Snacks" })
+            return
+        }
+
+        // Validate calories is a positive number
+        if (isNaN(calories) || calories < 0) {
+            res.status(400).json({ message: "Calories must be a positive number" })
+            return
+        }
+
+        var newMeal = await MealModel.create({
             user_id,
             mealType,
-            calories,
-            date
-        }
-    )
+            foodName,
+            calories: Number(calories),
+            description: description || "",
+            time: time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        })
 
-    res.status(201).json({
-        message: "Meal Added Successfully",
-        meal: newMeal
-    })
-
-
+        res.status(201).json({
+            message: "Meal Added Successfully",
+            meal: newMeal
+        })
+    } catch (error) {
+        console.error("Error creating meal:", error)
+        res.status(500).json({ message: "Server error", error: error.message })
+    }
 }
 
 async function DeleteMeal(req, res) {
-    var id = req.params.id;
-    await MealModel.findByIdAndDelete(id)
-    res.status(200).json({ message: "Meal Deleted" })
+    try {
+        var id = req.params.id;
+        var deletedMeal = await MealModel.findByIdAndDelete(id)
+
+        if (!deletedMeal) {
+            res.status(404).json({ message: "Meal not found" })
+            return
+        }
+
+        res.status(200).json({
+            message: "Meal Deleted Successfully",
+            deletedMeal: deletedMeal
+        })
+    } catch (error) {
+        console.error("Error deleting meal:", error)
+        res.status(500).json({ message: "Server error", error: error.message })
+    }
 }
-
-
-
 
 module.exports = { getAllMealOfUser, postMeal, DeleteMeal }

@@ -9,6 +9,7 @@ import Workout from "./Pages/Workout";
 import Calories from "./Pages/Calories";
 import ExerciseForm from "./Pages/AddWorkout";
 import UpdateWorkoutPage from "./Pages/UpdateWorkout";
+import AddCalories from "./Pages/AddCalories";
 
 function App() {
   return (
@@ -66,6 +67,12 @@ function App() {
           path="/updateWorkout/:id"
           element={
             <UpdateWorkoutPage />
+          }
+        />
+        <Route
+          path="/addCalories"
+          element={
+            <AddCalories />
           }
         />
       </Routes>
