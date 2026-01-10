@@ -9,6 +9,7 @@ require('./config/db.js')
 var authRoute = require('./routes/auth_routes')
 var WorkoutRoute = require('./routes/workout_routes')
 var MealRoute = require('./routes/meal_route')
+var WeightRoute = require("./routes/weight_routes.js")
 //Middle Ware Calls
 
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use(cors())
 app.use("/auth", authRoute)
 app.use("/workout", WorkoutRoute)
 app.use("/meal", MealRoute)
+app.use("/weight", WeightRoute)
 app.use(require('./middleware/error_handler'))
 
 

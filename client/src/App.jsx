@@ -10,6 +10,7 @@ import Calories from "./Pages/Calories";
 import ExerciseForm from "./Pages/AddWorkout";
 import UpdateWorkoutPage from "./Pages/UpdateWorkout";
 import AddCalories from "./Pages/AddCalories";
+import AddWeight from "./Pages/AddWeight";
 
 function App() {
   return (
@@ -84,6 +85,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddCalories />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/AddWeight"
+          element={
+            <ProtectedRoute>
+              <AddWeight />
             </ProtectedRoute>
           }
         />

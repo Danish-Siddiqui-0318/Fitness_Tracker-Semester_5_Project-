@@ -10,3 +10,20 @@ async function getUserWeight(req, res) {
 
     res.status(200).json(weight)
 }
+
+async function PostWeight(req, res) {
+    var { user_id, weight } = req.body;
+    if (!user_id || !weight) {
+        res.status(400)
+        throw new Error("All fields are required")
+    }
+    var weight = await weightModel.create({
+        user_id,
+        weight
+    })
+    res.status(201).json({
+        message: "Weight Added Successfully",
+        weight
+    })
+}
+module.exports = { getUserWeight, PostWeight }
