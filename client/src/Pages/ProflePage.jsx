@@ -37,7 +37,12 @@ const ProfilePage = () => {
         try {
             const userid = profile._id;
             const response = await axios.get(`http://localhost:3000/weight/${userid}`)
-            setWeight(response.data)
+            // Sort weights by date descending to get latest first
+            const sortedWeight = response.data.sort((a, b) => 
+                new Date(b.updatedAt) - new Date(a.updatedAt)
+            );
+            setWeight(sortedWeight);
+            console.log(sortedWeight);
         } catch (error) {
             console.log(error)
         }
@@ -138,7 +143,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         if (profile?._id) {
-            fetchWeight(profile._id);
+            fetchWeight();
         }
     }, [profile]);
 
@@ -293,14 +298,15 @@ const ProfilePage = () => {
                                             {weight.length > 0 ? (
                                                 <div>
                                                     <div className="flex items-end gap-2">
-                                                        <div className="text-2xl font-bold text-amber-400">{weight[0].weight}</div>
+                                                        {/* Show latest weight (first in sorted array) */}
+                                                        <div className="text-2xl font-bold text-amber-400">{weight[0]?.weight}</div>
                                                         <div className="text-lg text-gray-400">kg</div>
                                                     </div>
                                                     <div className="flex items-center mt-2">
                                                         <span className={`text-xs font-medium px-2 py-1 rounded-full ${weightChange.isPositive ? 'bg-emerald-900/30 text-emerald-400' : 'bg-red-900/30 text-red-400'}`}>
                                                             {weightChange.isPositive ? '▼' : '▲'} {weightChange.change} kg ({weightChange.percentage}%)
                                                         </span>
-                                                        <span className="text-xs text-gray-500 ml-2">{formatDate(weight[0].updatedAt)}</span>
+                                                        <span className="text-xs text-gray-500 ml-2">{formatDate(weight[0]?.updatedAt)}</span>
                                                     </div>
                                                 </div>
                                             ) : (
@@ -350,21 +356,31 @@ const ProfilePage = () => {
                                             {weightChange.isPositive ? 'Losing' : 'Gaining'} {weightChange.change} kg
                                         </span>
                                     </div>
-                                    <div className="h-32 flex items-end space-x-2">
-                                        {weight.slice(0, 7).reverse().map((entry, index) => {
+                                    <div className="h-40 flex items-end space-x-2 relative">
+                                        {weight.slice(0, 7).map((entry, index) => {
                                             const entryWeight = entry.weight;
-                                            const maxWeight = Math.max(...weight.map(w => w.weight));
-                                            const minWeight = Math.min(...weight.map(w => w.weight));
-                                            const height = ((entryWeight - minWeight) / (maxWeight - minWeight)) * 80 + 20;
+                                            const allWeights = weight.slice(0, 7).map(w => w.weight);
+                                            const maxWeight = Math.max(...allWeights);
+                                            const minWeight = Math.min(...allWeights);
+                                            const height = maxWeight === minWeight ? 60 : ((entryWeight - minWeight) / (maxWeight - minWeight)) * 80 + 20;
 
                                             return (
-                                                <div key={index} className="flex-1 flex flex-col items-center">
+                                                <div key={index} className="flex-1 flex flex-col items-center relative">
                                                     <div
-                                                        className={`w-full rounded-t-lg ${index === weight.length - 1 ? 'bg-gradient-to-t from-amber-600 to-yellow-500' : 'bg-gray-700'}`}
+                                                        className={`w-full rounded-t-lg relative group ${index === 0 ? 'bg-gradient-to-t from-amber-600 to-yellow-500' : 'bg-gray-700'}`}
                                                         style={{ height: `${height}px` }}
-                                                    ></div>
+                                                    >
+                                                        {/* Weight label on hover */}
+                                                        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                                            {entry.weight} kg
+                                                        </div>
+                                                    </div>
                                                     <div className="text-xs text-gray-500 mt-2">
                                                         {new Date(entry.updatedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}
+                                                    </div>
+                                                    {/* Weight value shown on bar */}
+                                                    <div className="absolute bottom-full mb-1 text-xs font-medium text-gray-300">
+                                                        {entry.weight}
                                                     </div>
                                                 </div>
                                             );
@@ -372,12 +388,20 @@ const ProfilePage = () => {
                                     </div>
                                 </div>
 
-                                {/* Recent Weight Entries */}
+                                {/* Recent Weight Entries - Show all with pagination if needed */}
                                 <div className="space-y-3">
+                                    <div className="flex justify-between items-center mb-4">
+                                        <h4 className="text-sm font-semibold text-gray-400">Recent Entries ({weight.length} total)</h4>
+                                        {weight.length > 5 && (
+                                            <span className="text-xs text-amber-400">
+                                                Showing latest 5 of {weight.length}
+                                            </span>
+                                        )}
+                                    </div>
                                     {weight.slice(0, 5).map((entry, index) => (
                                         <div key={index} className="flex justify-between items-center bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-all duration-300">
                                             <div className="flex items-center">
-                                                <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-amber-900/30 to-yellow-900/20 flex items-center justify-center mr-4">
+                                                <div className={`h-10 w-10 rounded-lg ${index === 0 ? 'bg-gradient-to-r from-amber-900/30 to-yellow-900/20' : 'bg-gray-700/30'} flex items-center justify-center mr-4`}>
                                                     <span className="text-lg">⚖️</span>
                                                 </div>
                                                 <div>
@@ -396,11 +420,43 @@ const ProfilePage = () => {
                                             <div className="text-right">
                                                 <div className="text-xl font-bold text-amber-400">{entry.weight} kg</div>
                                                 {index === 0 && (
-                                                    <div className="text-xs text-gray-500">Latest</div>
+                                                    <div className="text-xs text-emerald-500 font-medium">Current</div>
                                                 )}
                                             </div>
                                         </div>
                                     ))}
+                                    {weight.length > 5 && (
+                                        <div className="text-center pt-4">
+                                            <button
+                                                onClick={() => {
+                                                    // You could implement a modal to show all weights here
+                                                    Swal.fire({
+                                                        title: "All Weight Entries",
+                                                        html: `
+                                                            <div class="text-left">
+                                                                ${weight.map((entry, index) => `
+                                                                    <div class="flex justify-between items-center py-2 border-b border-gray-700/50">
+                                                                        <div>
+                                                                            <div class="text-white">${formatDate(entry.updatedAt)}</div>
+                                                                            <div class="text-xs text-gray-400">${new Date(entry.updatedAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</div>
+                                                                        </div>
+                                                                        <div class="text-amber-400 font-bold">${entry.weight} kg</div>
+                                                                    </div>
+                                                                `).join('')}
+                                                            </div>
+                                                        `,
+                                                        background: '#0a1a1a',
+                                                        color: '#ffffff',
+                                                        confirmButtonColor: '#183D3D',
+                                                        width: '500px'
+                                                    });
+                                                }}
+                                                className="text-sm text-amber-400 hover:text-amber-300 hover:underline transition-colors duration-200"
+                                            >
+                                                View All {weight.length} Entries →
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}
