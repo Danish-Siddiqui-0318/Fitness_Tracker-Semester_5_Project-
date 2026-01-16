@@ -60,17 +60,17 @@ export default function Navbar() {
     { path: "/workout", label: "Workout", icon: "💪" },
     { path: "/calories", label: "Calories", icon: "🔥" },
     { path: "/profile", label: "Profile", icon: "👤" },
+    { path: "/feedback", label: "Feedback", icon: "💬" }, // Added Feedback link
   ];
 
   return (
     <>
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
             ? "bg-gradient-to-r from-[#040D12]/95 to-[#0a1a1a]/95 backdrop-blur-md shadow-lg border-b border-gray-800/50"
             : "bg-gradient-to-r from-[#040D12] to-[#0a1a1a]"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -103,11 +103,10 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setActiveLink(link.path)}
-                  className={`relative px-4 py-2 rounded-lg transition-all duration-300 group ${
-                    activeLink === link.path
+                  className={`relative px-4 py-2 rounded-lg transition-all duration-300 group ${activeLink === link.path
                       ? "text-white"
                       : "text-gray-400 hover:text-white"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center space-x-2">
                     <span className="text-sm">{link.icon}</span>
@@ -127,23 +126,33 @@ export default function Navbar() {
 
             {/* Right Side - Logout & Profile */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Notification Bell */}
-              {/* <button className="relative p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-300">
-                <svg
-                  className="w-5 h-5 text-gray-400 hover:text-cyan-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  ></path>
-                </svg>
-                <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"></span>
-              </button> */}
+              {/* Feedback Button with Badge */}
+              <Link
+                to="/feedback"
+                onClick={() => setActiveLink("/feedback")}
+                className={`relative p-2 rounded-lg transition-all duration-300 group ${activeLink === "/feedback"
+                    ? "bg-gradient-to-r from-purple-900/30 to-pink-900/20 border border-purple-500/30"
+                    : "hover:bg-gray-800/50"
+                  }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <span className="text-lg">💬</span>
+                  <span className={`text-sm font-medium ${activeLink === "/feedback" ? "text-purple-300" : "text-gray-400 group-hover:text-white"
+                    }`}>
+                    Feedback
+                  </span>
+                </div>
+
+                {/* New Badge */}
+                <div className="absolute -top-1 -right-1">
+                  <div className="h-4 w-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center">
+                    <span className="text-[10px] text-white font-bold">NEW</span>
+                  </div>
+                </div>
+
+                {/* Hover effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+              </Link>
 
               {/* Logout Button */}
               <button
@@ -177,19 +186,16 @@ export default function Navbar() {
             >
               <div className="relative w-6 h-6">
                 <span
-                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${
-                    isOpen ? "rotate-45 top-3" : "top-1"
-                  }`}
+                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${isOpen ? "rotate-45 top-3" : "top-1"
+                    }`}
                 ></span>
                 <span
-                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${
-                    isOpen ? "opacity-0" : "top-3"
-                  }`}
+                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${isOpen ? "opacity-0" : "top-3"
+                    }`}
                 ></span>
                 <span
-                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${
-                    isOpen ? "-rotate-45 top-3" : "top-5"
-                  }`}
+                  className={`absolute block w-6 h-0.5 bg-gray-300 transform transition-all duration-300 ${isOpen ? "-rotate-45 top-3" : "top-5"
+                    }`}
                 ></span>
               </div>
             </button>
@@ -198,9 +204,8 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden bg-gradient-to-b from-gray-900/95 to-[#040D12]/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-96 border-t border-gray-800/50" : "max-h-0"
-          }`}
+          className={`md:hidden bg-gradient-to-b from-gray-900/95 to-[#040D12]/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 border-t border-gray-800/50" : "max-h-0"
+            }`}
         >
           <div className="px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
@@ -211,21 +216,24 @@ export default function Navbar() {
                   setActiveLink(link.path);
                   closeMenu();
                 }}
-                className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group ${
-                  activeLink === link.path
+                className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group relative ${activeLink === link.path
                     ? "bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700"
                     : "hover:bg-gray-800/50"
-                }`}
+                  }`}
               >
                 <div className="flex items-center space-x-3">
                   <span className="text-lg">{link.icon}</span>
                   <span
-                    className={`font-medium ${
-                      activeLink === link.path ? "text-white" : "text-gray-300"
-                    }`}
+                    className={`font-medium ${activeLink === link.path ? "text-white" : "text-gray-300"
+                      }`}
                   >
                     {link.label}
                   </span>
+                  {link.path === "/feedback" && (
+                    <div className="h-5 w-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center">
+                      <span className="text-[10px] text-white font-bold">NEW</span>
+                    </div>
+                  )}
                 </div>
                 {activeLink === link.path && (
                   <div className="h-2 w-2 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500"></div>
@@ -267,13 +275,12 @@ export default function Navbar() {
         <div
           className="h-full bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 transition-all duration-300"
           style={{
-            width: `${
-              scrolled
+            width: `${scrolled
                 ? (window.scrollY /
-                    (document.body.scrollHeight - window.innerHeight)) *
-                  100
+                  (document.body.scrollHeight - window.innerHeight)) *
+                100
                 : 0
-            }%`,
+              }%`,
           }}
         ></div>
       </div>
