@@ -84,10 +84,8 @@ export function Hero() {
 
   return (
     <div className="relative w-full text-white overflow-hidden">
-      {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#040D12] via-[#0a1a1a] to-[#040D12] opacity-90"></div>
 
-      {/* Animated dots background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-900/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-900/10 rounded-full blur-3xl"></div>
@@ -95,9 +93,7 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32 lg:pb-24">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-          {/* Left Content */}
           <div className="lg:col-span-7 xl:col-span-7">
-            {/* Welcome badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#183D3D]/30 to-cyan-900/30 border border-[#183D3D]/50 mb-6">
               <span className="h-2 w-2 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 mr-2 animate-pulse"></span>
               <span className="text-sm font-medium text-cyan-200">
@@ -105,7 +101,6 @@ export function Hero() {
               </span>
             </div>
 
-            {/* Main heading with name */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
               <span className="block text-gray-300">Hello,</span>
               <span className="block bg-gradient-to-r from-cyan-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent">
@@ -113,7 +108,6 @@ export function Hero() {
               </span>
             </h1>
 
-            {/* Subheading */}
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-300 mb-6">
               Track Your Progress,{" "}
               <span className="relative inline-block">
@@ -122,17 +116,14 @@ export function Hero() {
               </span>
             </h2>
 
-            {/* Description */}
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
               Monitor your daily activity, heart rate, and sleep patterns with
               precision. Join thousands of users reaching their health goals
               every day.
             </p>
 
-            {/* Interactive Stats Display */}
             <div className="mb-8">
               <div className="relative h-40 bg-gray-900/50 rounded-2xl border border-gray-800/50 p-6 backdrop-blur-sm">
-                {/* Current Stat Display */}
                 <div className="h-full flex flex-col justify-center">
                   <div className="flex items-center mb-4">
                     <div
@@ -162,7 +153,6 @@ export function Hero() {
                     </div>
                   </div>
 
-                  {/* Stats Indicator Dots */}
                   <div className="flex space-x-2 mt-4">
                     {statsData.map((_, index) => (
                       <button
@@ -180,7 +170,6 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 type="button"
@@ -224,7 +213,6 @@ export function Hero() {
               </button>
             </div>
 
-            {/* Trust indicators */}
             <div className="mt-12 pt-8 border-t border-gray-800/50">
               <p className="text-sm text-gray-400 mb-4">
                 Trusted by fitness enthusiasts worldwide
@@ -251,22 +239,17 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Image/Content */}
           <div className="lg:col-span-5 xl:col-span-5 mt-12 lg:mt-0">
             <div className="relative">
-              {/* Main Image Container */}
               <div className="relative overflow-hidden rounded-2xl lg:rounded-3xl shadow-2xl">
-                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040D12]/80 via-transparent to-transparent z-10"></div>
 
-                {/* Image */}
                 <img
                   className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
                   src="https://i.ibb.co/qLgqVN3D/Gemini-Generated-Image-4oma7j4oma7j4oma.png"
                   alt="Fitness tracking dashboard and user"
                 />
 
-                {/* Floating stats overlay */}
                 <div className="absolute bottom-6 left-6 right-6 z-20">
                   <div className="bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-800/50">
                     <div className="grid grid-cols-3 gap-4">
@@ -291,11 +274,9 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Decorative Elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-cyan-500/20 to-teal-500/20 rounded-full blur-xl"></div>
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-[#183D3D]/20 to-cyan-900/20 rounded-full blur-xl"></div>
 
-              {/* Floating Card 1 */}
               <div className="absolute -left-6 top-1/4 hidden lg:block">
                 <div className="bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-800/50 shadow-xl w-48">
                   <div className="flex items-center mb-2">
@@ -322,7 +303,6 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Floating Card 2 */}
               <div className="absolute -right-6 bottom-1/4 hidden lg:block">
                 <div className="bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-800/50 shadow-xl w-48">
                   <div className="flex items-center mb-2">

@@ -32,7 +32,6 @@ const UpdateWorkoutPage = () => {
         weight: "",
     })
 
-    // Calculate workout volume
     const calculateVolume = () => {
         const sets = parseInt(formData.sets) || 0
         const reps = parseInt(formData.reps) || 0
@@ -40,7 +39,6 @@ const UpdateWorkoutPage = () => {
         return sets * reps * weight
     }
 
-    // Check if data has changed
     const hasChanges = () => {
         if (!originalData) return false
         return (
@@ -51,7 +49,6 @@ const UpdateWorkoutPage = () => {
         )
     }
 
-    // 🔹 GET SINGLE WORKOUT
     useEffect(() => {
         async function fetchWorkout() {
             try {
@@ -91,14 +88,12 @@ const UpdateWorkoutPage = () => {
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
-    // Reset to original values
     const handleReset = () => {
         if (originalData) {
             setFormData(originalData)
         }
     }
 
-    // 🔹 UPDATE WORKOUT
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -169,14 +164,12 @@ const UpdateWorkoutPage = () => {
         <>
             <Navbar />
             <div className="min-h-screen bg-gradient-to-b from-[#040D12] to-[#0a1a1a] pt-20">
-                {/* Background Elements */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-cyan-900/10 to-teal-900/5 rounded-full blur-3xl"></div>
                     <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-emerald-900/5 to-[#183D3D]/10 rounded-full blur-3xl"></div>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto px-4 py-8">
-                    {/* Header */}
                     <div className="mb-8">
                         <button
                             onClick={() => navigate("/workout")}
@@ -204,10 +197,8 @@ const UpdateWorkoutPage = () => {
                     </div>
 
                     <div className="grid lg:grid-cols-3 gap-8">
-                        {/* Main Form Section */}
                         <div className="lg:col-span-2">
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-8 border border-gray-800/50 shadow-2xl">
-                                {/* Current Exercise Header */}
                                 <div className="flex items-center justify-between mb-8">
                                     <div className="flex items-center">
                                         <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-900/30 to-cyan-900/10 flex items-center justify-center mr-4">
@@ -229,7 +220,6 @@ const UpdateWorkoutPage = () => {
                                 </div>
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
-                                    {/* Exercise Name */}
                                     <div>
                                         <label className="block text-sm font-medium mb-3 text-gray-300">
                                             Exercise Name
@@ -252,9 +242,7 @@ const UpdateWorkoutPage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Exercise Metrics Grid */}
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {/* Sets */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Sets
@@ -278,7 +266,6 @@ const UpdateWorkoutPage = () => {
                                             </div>
                                         </div>
 
-                                        {/* Reps */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Reps per Set
@@ -302,7 +289,6 @@ const UpdateWorkoutPage = () => {
                                             </div>
                                         </div>
 
-                                        {/* Weight */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Weight (kg)
@@ -328,7 +314,6 @@ const UpdateWorkoutPage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Workout Summary */}
                                     <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
                                         <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                                             <BarChart3 className="mr-2 text-cyan-400" />
@@ -362,7 +347,6 @@ const UpdateWorkoutPage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Action Buttons */}
                                     <div className="pt-6">
                                         <div className="flex flex-col sm:flex-row gap-4">
                                             <button
@@ -413,9 +397,7 @@ const UpdateWorkoutPage = () => {
                             </div>
                         </div>
 
-                        {/* Sidebar */}
                         <div className="space-y-6">
-                            {/* Workout Stats */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                                     <TrendingUp className="mr-2 text-emerald-400" />
@@ -449,7 +431,6 @@ const UpdateWorkoutPage = () => {
                                 </div>
                             </div>
 
-                            {/* Tips */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                                     <Info className="mr-2 text-cyan-400" />
@@ -483,7 +464,6 @@ const UpdateWorkoutPage = () => {
                                 </ul>
                             </div>
 
-                            {/* Quick Actions */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
                                 <div className="space-y-3">

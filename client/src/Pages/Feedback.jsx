@@ -109,14 +109,12 @@ function Feedback() {
             <Navbar />
 
             <div className="pt-20 pb-12 px-4">
-                {/* Background Elements */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-emerald-900/10 to-green-900/5 rounded-full blur-3xl"></div>
                     <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-cyan-900/5 to-teal-900/10 rounded-full blur-3xl"></div>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto">
-                    {/* Header Section */}
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-500/30 mb-4">
                             <span className="h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
@@ -131,7 +129,6 @@ function Feedback() {
                     </div>
 
                     <div className="grid lg:grid-cols-3 gap-8">
-                        {/* Main Form Column */}
                         <div className="lg:col-span-2">
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-8 border border-gray-800/50 shadow-2xl">
                                 <div className="flex items-center mb-8">
@@ -147,7 +144,6 @@ function Feedback() {
                                 </div>
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
-                                    {/* Feedback Textarea */}
                                     <div>
                                         <div className="flex justify-between items-center mb-3">
                                             <label className="block text-sm font-semibold text-gray-300">
@@ -173,7 +169,6 @@ function Feedback() {
                                         </div>
                                     </div>
 
-                                    {/* Tips for Good Feedback */}
                                     <div className="bg-gradient-to-r from-gray-800/30 to-gray-900/30 rounded-xl p-4 border border-gray-700/30">
                                         <div className="flex items-start">
                                             <div className="h-6 w-6 rounded-full bg-emerald-900/30 flex items-center justify-center mr-3 mt-1">
@@ -193,7 +188,6 @@ function Feedback() {
                                         </div>
                                     </div>
 
-                                    {/* Action Buttons */}
                                     <div className="flex space-x-4">
                                         <button
                                             type="button"
@@ -233,9 +227,7 @@ function Feedback() {
                             </div>
                         </div>
 
-                        {/* Right Column - Info & Stats */}
                         <div className="space-y-8">
-                            {/* What Happens Next */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-bold text-white mb-4 flex items-center">
                                     <svg className="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,7 +266,6 @@ function Feedback() {
                                 </div>
                             </div>
 
-                            {/* Statistics */}
                             <div className="bg-gradient-to-br from-gray-900 to-emerald-900/10 rounded-3xl p-6 border border-emerald-900/30 shadow-2xl">
                                 <h3 className="text-lg font-bold text-white mb-4 flex items-center">
                                     <svg className="w-5 h-5 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -303,7 +294,6 @@ function Feedback() {
                                 </div>
                             </div>
 
-                            {/* Common Topics */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-bold text-white mb-4">Popular Feedback Topics</h3>
                                 <div className="space-y-3">
@@ -324,7 +314,6 @@ function Feedback() {
                         </div>
                     </div>
 
-                    {/* Footer Note */}
                     <div className="mt-12 text-center">
                         <p className="text-gray-500 text-sm">
                             We value your privacy. Your feedback will be used solely for improving our services.

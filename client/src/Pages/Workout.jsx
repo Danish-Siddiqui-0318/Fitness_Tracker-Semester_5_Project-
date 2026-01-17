@@ -41,7 +41,6 @@ function Workout() {
     try {
       await axios.delete(`http://localhost:3000/workout/${id}`);
 
-      // 🔥 instantly update UI
       setWorkout(prev => {
         const updated = prev.filter(item => item._id !== id);
         setStats(calculateStats(updated));
@@ -165,7 +164,6 @@ function Workout() {
       <Navbar />
 
       <div className="min-h-screen bg-gradient-to-b from-[#040D12] to-[#0a1a1a] pt-20">
-        {/* Hero Section */}
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/10 via-transparent to-emerald-900/10"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -193,7 +191,6 @@ function Workout() {
               </button>
             </div>
 
-            {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50">
                 <div className="flex items-center justify-between">
@@ -252,7 +249,6 @@ function Workout() {
               </div>
             </div>
 
-            {/* Filter Section */}
             <div className="mb-8">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                 <h2 className="text-xl font-semibold text-white">Your Exercise History</h2>
@@ -273,7 +269,6 @@ function Workout() {
                 </div>
               </div>
 
-              {/* Workout Cards Section */}
               {filteredWorkouts.length === 0 ? (
                 <div className="text-center py-16 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-800/50">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-gray-800 to-gray-900 mb-6">
@@ -305,7 +300,6 @@ function Workout() {
                       <div key={item._id} className="group relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600/20 to-emerald-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
                         <div className="relative bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50 hover:border-cyan-500/30 transition-all duration-300">
-                          {/* Header with date */}
                           <div className="flex justify-between items-start mb-4">
                             <div>
                               <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-cyan-900/30 to-cyan-900/10 text-cyan-300 mb-2">
@@ -337,12 +331,10 @@ function Workout() {
                             </div>
                           </div>
 
-                          {/* Exercise Name */}
                           <h3 className="text-xl font-bold text-white mb-4 truncate">
                             {item.exerciseName}
                           </h3>
 
-                          {/* Stats Grid */}
                           <div className="grid grid-cols-3 gap-4 mb-6">
                             <div className="text-center">
                               <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -364,7 +356,6 @@ function Workout() {
                             </div>
                           </div>
 
-                          {/* Progress Bar */}
                           <div className="mt-4">
                             <div className="flex justify-between text-xs text-gray-400 mb-1">
                               <span>Intensity</span>
@@ -382,7 +373,6 @@ function Workout() {
                     ))}
                   </div>
 
-                  {/* Summary */}
                   <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50">
                     <div className="flex items-center justify-between">
                       <div>

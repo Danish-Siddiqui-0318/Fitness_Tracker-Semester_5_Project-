@@ -61,15 +61,12 @@ function Calories() {
       if (result.isConfirmed) {
         await axios.delete(`http://localhost:3000/meal/${mealId}`);
 
-        // Update local state
         const updatedCalories = calories.filter(meal => meal._id !== mealId);
         setCalories(updatedCalories);
 
-        // Recalculate total calories
         const total = updatedCalories.reduce((sum, meal) => sum + (meal.calories || 0), 0);
         setTotalCalories(total);
 
-        // Close modal if open
         setSelectedMeal(null);
 
         Swal.fire({
@@ -95,7 +92,6 @@ function Calories() {
     }
   };
 
-  // Helper functions to replace date-fns
   const formatDate = (dateString) => {
     if (!dateString) return 'Unknown Date';
 
@@ -107,13 +103,10 @@ function Calories() {
       const yesterday = new Date(today);
       yesterday.setDate(yesterday.getDate() - 1);
 
-      // Check if it's today
       if (date.toDateString() === today.toDateString()) return 'Today';
 
-      // Check if it's yesterday
       if (date.toDateString() === yesterday.toDateString()) return 'Yesterday';
 
-      // Format as "Month day, year"
       return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -156,7 +149,7 @@ function Calories() {
       try {
         if (meal.date) {
           const date = new Date(meal.date);
-          dateKey = date.toISOString().split('T')[0]; // YYYY-MM-DD format
+          dateKey = date.toISOString().split('T')[0]; 
         } else if (meal.createdAt) {
           const date = new Date(meal.createdAt);
           dateKey = date.toISOString().split('T')[0];
@@ -173,7 +166,6 @@ function Calories() {
       grouped[dateKey].push(meal);
     });
 
-    // Sort dates in descending order
     return Object.entries(grouped).sort(([dateA], [dateB]) => {
       return new Date(dateB) - new Date(dateA);
     });
@@ -240,7 +232,6 @@ function Calories() {
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header Section */}
         <div className="mb-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
             <div>
@@ -261,7 +252,6 @@ function Calories() {
             </button>
           </div>
 
-          {/* Stats Overview */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800">
               <div className="flex items-center">
@@ -314,7 +304,6 @@ function Calories() {
             </div>
           </div>
 
-          {/* Progress Bar */}
           <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 mb-8">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold text-white">Daily Progress</h3>
@@ -335,7 +324,6 @@ function Calories() {
           </div>
         </div>
 
-        {/* Filters */}
         <div className="mb-8">
           <div className="flex space-x-4 mb-6">
             {['all', 'today', 'week'].map((filterType) => (
@@ -353,7 +341,6 @@ function Calories() {
           </div>
         </div>
 
-        {/* Main Content */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
@@ -445,7 +432,6 @@ function Calories() {
         )}
       </main>
 
-      {/* Meal Detail Modal */}
       {selectedMeal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
           <div className="bg-gray-900 rounded-2xl w-full max-w-md border border-gray-800">

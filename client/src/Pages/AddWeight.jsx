@@ -26,7 +26,6 @@ function AddWeight() {
             )
             setProfile(response.data)
 
-            // Fetch weight history if available
             if (response.data?._id) {
                 try {
                     const weightRes = await axios.get(`http://localhost:3000/weight/${response.data._id}`)
@@ -49,7 +48,6 @@ function AddWeight() {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        // Only allow numbers and one decimal point
         const regex = /^\d*\.?\d*$/
         if (regex.test(value) || value === "") {
             setFormData(prev => ({
@@ -155,7 +153,7 @@ function AddWeight() {
         const change = latest - previous
         return {
             change: Math.abs(change).toFixed(1),
-            isPositive: change <= 0 // Negative change is good (weight loss)
+            isPositive: change <= 0 
         }
     }
 
@@ -166,7 +164,6 @@ function AddWeight() {
             <Navbar />
 
             <div className="max-w-6xl mx-auto px-4 py-8">
-                {/* Back Button Header */}
                 <div className="mb-8">
                     <button
                         onClick={handleBack}
@@ -180,10 +177,8 @@ function AddWeight() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Left Column - Main Form */}
                     <div className="lg:col-span-2">
                         <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-800 shadow-2xl">
-                            {/* Header with Back Button */}
                             <div className="flex justify-between items-start mb-8">
                                 <div className="flex items-center">
                                     <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-yellow-900/30 to-amber-900/30 flex items-center justify-center mr-4">
@@ -209,7 +204,6 @@ function AddWeight() {
                                 </button>
                             </div>
 
-                            {/* Stats Overview */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                                 <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50">
                                     <div className="flex items-center">
@@ -252,7 +246,6 @@ function AddWeight() {
                                 </div>
                             </div>
 
-                            {/* Main Form */}
                             <form onSubmit={handleSubmit} className="space-y-8">
                                 <div>
                                     <label className="block text-lg font-semibold mb-4 text-gray-300">
@@ -291,7 +284,6 @@ function AddWeight() {
                                         </div>
                                     </div>
 
-                                    {/* Weight range slider */}
                                     <div className="mt-8">
                                         <div className="flex justify-between text-sm text-gray-400 mb-2">
                                             <span>30 kg</span>
@@ -325,7 +317,6 @@ function AddWeight() {
                                         </div>
                                     </div>
 
-                                    {/* Quick weight buttons */}
                                     <div className="mt-8">
                                         <p className="text-sm text-gray-400 mb-3">Quick Select:</p>
                                         <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
@@ -345,7 +336,6 @@ function AddWeight() {
                                     </div>
                                 </div>
 
-                                {/* Action Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                     <button
                                         type="button"
@@ -384,9 +374,7 @@ function AddWeight() {
                         </div>
                     </div>
 
-                    {/* Right Column - History & Info */}
                     <div className="space-y-8">
-                        {/* Weight Trends */}
                         <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-800">
                             <h3 className="text-xl font-bold text-white mb-6 flex items-center">
                                 <svg className="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -397,7 +385,6 @@ function AddWeight() {
 
                             {weightHistory.length > 0 ? (
                                 <div className="space-y-4">
-                                    {/* Mini chart */}
                                     <div className="h-32 flex items-end space-x-2 mb-6">
                                         {weightHistory.slice(0, 7).reverse().map((entry, index) => {
                                             const weight = entry.weight
@@ -419,7 +406,6 @@ function AddWeight() {
                                         })}
                                     </div>
 
-                                    {/* Recent entries list */}
                                     <div className="space-y-3">
                                         <h4 className="text-sm font-semibold text-gray-400">Recent Entries</h4>
                                         {weightHistory.slice(0, 5).map((entry, index) => (
@@ -457,7 +443,6 @@ function AddWeight() {
                             )}
                         </div>
 
-                        {/* Health Information */}
                         <div className="bg-gradient-to-br from-gray-900 to-amber-900/10 rounded-3xl p-6 border border-amber-900/30">
                             <h3 className="text-xl font-bold text-white mb-6 flex items-center">
                                 <svg className="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

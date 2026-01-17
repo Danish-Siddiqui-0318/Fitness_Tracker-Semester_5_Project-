@@ -9,12 +9,10 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Update active link when route changes
   useEffect(() => {
     setActiveLink(location.pathname);
   }, [location]);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -60,12 +58,11 @@ export default function Navbar() {
     { path: "/workout", label: "Workout", icon: "💪" },
     { path: "/calories", label: "Calories", icon: "🔥" },
     { path: "/profile", label: "Profile", icon: "👤" },
-    { path: "/feedback", label: "Feedback", icon: "💬" }, // Added Feedback link
+    { path: "/feedback", label: "Feedback", icon: "💬" }, 
   ];
 
   return (
     <>
-      {/* Navbar */}
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
             ? "bg-gradient-to-r from-[#040D12]/95 to-[#0a1a1a]/95 backdrop-blur-md shadow-lg border-b border-gray-800/50"
@@ -74,7 +71,6 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <Link
               to="/"
               className="flex items-center space-x-3 group"
@@ -96,7 +92,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation Links - Center */}
             <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center space-x-1">
               {navLinks.map((link) => (
                 <Link
@@ -113,20 +108,16 @@ export default function Navbar() {
                     <span className="font-medium">{link.label}</span>
                   </div>
 
-                  {/* Active indicator */}
                   {activeLink === link.path && (
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full"></div>
                   )}
 
-                  {/* Hover effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-gray-800/20 to-gray-800/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                 </Link>
               ))}
             </div>
 
-            {/* Right Side - Logout & Profile */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Feedback Button with Badge */}
               <Link
                 to="/feedback"
                 onClick={() => setActiveLink("/feedback")}
@@ -143,18 +134,15 @@ export default function Navbar() {
                   </span>
                 </div>
 
-                {/* New Badge */}
                 <div className="absolute -top-1 -right-1">
                   <div className="h-4 w-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center">
                     <span className="text-[10px] text-white font-bold">NEW</span>
                   </div>
                 </div>
 
-                {/* Hover effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-pink-900/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
               </Link>
 
-              {/* Logout Button */}
               <button
                 onClick={handleLogout}
                 className="group relative px-4 py-2 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 flex items-center space-x-2"
@@ -179,7 +167,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-300"
@@ -202,7 +189,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`md:hidden bg-gradient-to-b from-gray-900/95 to-[#040D12]/95 backdrop-blur-lg overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 border-t border-gray-800/50" : "max-h-0"
             }`}
@@ -241,7 +227,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Mobile Logout Button */}
             <div className="pt-4 border-t border-gray-800/50">
               <button
                 onClick={() => {
@@ -270,7 +255,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-50">
         <div
           className="h-full bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 transition-all duration-300"
@@ -285,7 +269,6 @@ export default function Navbar() {
         ></div>
       </div>
 
-      {/* Spacer for fixed navbar */}
       <div className="h-16"></div>
     </>
   );

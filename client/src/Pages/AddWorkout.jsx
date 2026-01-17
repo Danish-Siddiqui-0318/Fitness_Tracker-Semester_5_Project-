@@ -29,7 +29,6 @@ const ExerciseForm = () => {
         weight: ''
     });
 
-    // Suggested exercises for quick selection
     const suggestedExercises = [
         { name: 'Bench Press', icon: '💪' },
         { name: 'Squats', icon: '🦵' },
@@ -41,7 +40,6 @@ const ExerciseForm = () => {
         { name: 'Chest Fly', icon: '🕊️' }
     ];
 
-    // ================= FETCH PROFILE =================
     async function fetchProfile() {
         try {
             const token = localStorage.getItem("token");
@@ -64,7 +62,6 @@ const ExerciseForm = () => {
         }
     }
 
-    // ================= HANDLE INPUT =================
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -73,7 +70,6 @@ const ExerciseForm = () => {
         }));
     };
 
-    // Quick select exercise
     const selectExercise = (exerciseName) => {
         setFormData(prev => ({
             ...prev,
@@ -81,7 +77,6 @@ const ExerciseForm = () => {
         }));
     };
 
-    // Calculate workout volume
     const calculateVolume = () => {
         const sets = parseInt(formData.sets) || 0;
         const reps = parseInt(formData.reps) || 0;
@@ -89,7 +84,6 @@ const ExerciseForm = () => {
         return sets * reps * weight;
     };
 
-    // Get workout intensity based on volume
     const getIntensity = () => {
         const volume = calculateVolume();
         if (volume > 2000) return { level: "Very High", color: "from-red-500 to-orange-500" };
@@ -99,7 +93,6 @@ const ExerciseForm = () => {
         return { level: "Not Set", color: "from-gray-500 to-gray-600" };
     };
 
-    // ================= HANDLE SUBMIT =================
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!profile || !profile._id) return;
@@ -151,7 +144,6 @@ const ExerciseForm = () => {
         }
     };
 
-    // ================= LOAD PROFILE ONCE =================
     useEffect(() => {
         fetchProfile();
     }, []);
@@ -163,14 +155,12 @@ const ExerciseForm = () => {
         <>
             <Navbar />
             <div className="min-h-screen bg-gradient-to-b from-[#040D12] to-[#0a1a1a] pt-20">
-                {/* Background Elements */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-cyan-900/10 to-teal-900/5 rounded-full blur-3xl"></div>
                     <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-emerald-900/5 to-[#183D3D]/10 rounded-full blur-3xl"></div>
                 </div>
 
                 <div className="relative max-w-6xl mx-auto px-4 py-8">
-                    {/* Header Section */}
                     <div className="mb-12 text-center">
                         <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#183D3D] to-cyan-900 mb-6">
                             <PlusCircle className="w-10 h-10 text-cyan-300" />
@@ -184,7 +174,6 @@ const ExerciseForm = () => {
                     </div>
 
                     <div className="grid lg:grid-cols-3 gap-8">
-                        {/* Main Form Section */}
                         <div className="lg:col-span-2">
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-8 border border-gray-800/50 shadow-2xl">
                                 <div className="flex items-center justify-between mb-8">
@@ -198,7 +187,6 @@ const ExerciseForm = () => {
                                 </div>
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
-                                    {/* Exercise Name with Suggestions */}
                                     <div>
                                         <label className="block text-sm font-medium mb-3 text-gray-300">
                                             Exercise Name
@@ -221,7 +209,6 @@ const ExerciseForm = () => {
                                             </div>
                                         </div>
 
-                                        {/* Quick Exercise Suggestions */}
                                         <div className="mt-4">
                                             <p className="text-sm text-gray-400 mb-3">Quick select:</p>
                                             <div className="flex flex-wrap gap-2">
@@ -243,9 +230,7 @@ const ExerciseForm = () => {
                                         </div>
                                     </div>
 
-                                    {/* Exercise Metrics Grid */}
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {/* Sets */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Sets
@@ -270,7 +255,6 @@ const ExerciseForm = () => {
                                             </div>
                                         </div>
 
-                                        {/* Reps */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Reps per Set
@@ -295,7 +279,6 @@ const ExerciseForm = () => {
                                             </div>
                                         </div>
 
-                                        {/* Weight */}
                                         <div>
                                             <label className="block text-sm font-medium mb-3 text-gray-300">
                                                 Weight (kg)
@@ -322,7 +305,6 @@ const ExerciseForm = () => {
                                         </div>
                                     </div>
 
-                                    {/* Workout Summary Card */}
                                     {(formData.sets || formData.reps || formData.weight) && (
                                         <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
                                             <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
@@ -366,7 +348,6 @@ const ExerciseForm = () => {
                                         </div>
                                     )}
 
-                                    {/* Submit Button */}
                                     <div className="pt-6">
                                         <button
                                             type="submit"
@@ -394,9 +375,7 @@ const ExerciseForm = () => {
                             </div>
                         </div>
 
-                        {/* Sidebar with Tips and Stats */}
                         <div className="space-y-6">
-                            {/* Workout Tips */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                                     <Zap className="mr-2 text-yellow-400" />
@@ -438,7 +417,6 @@ const ExerciseForm = () => {
                                 </ul>
                             </div>
 
-                            {/* Recent Activity Preview */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
                                     <TrendingUp className="mr-2 text-green-400" />
@@ -460,7 +438,6 @@ const ExerciseForm = () => {
                                 </div>
                             </div>
 
-                            {/* Quick Actions */}
                             <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 border border-gray-800/50 shadow-2xl">
                                 <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
                                 <button

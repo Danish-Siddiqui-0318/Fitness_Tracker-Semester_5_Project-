@@ -4,7 +4,6 @@ import { Dumbbell, Repeat, Layers, Weight, Pencil, Trash2, Calendar } from 'luci
 const ExerciseCard = ({ name, sets, reps, weight, date, onEdit, onDelete }) => {
     return (
         <div className="max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md">
-            {/* Date and Category Tag */}
             <div className="flex justify-between items-center mb-1">
                 <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-tight">
                     <Calendar size={12} />
@@ -12,7 +11,6 @@ const ExerciseCard = ({ name, sets, reps, weight, date, onEdit, onDelete }) => {
                 </div>
             </div>
 
-            {/* Header */}
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-xl font-bold text-slate-800 tracking-tight capitalize">{name}</h3>
                 <span className="rounded-full bg-blue-50 p-2 text-green-600">
@@ -22,7 +20,6 @@ const ExerciseCard = ({ name, sets, reps, weight, date, onEdit, onDelete }) => {
 
             <hr className="mb-4 border-slate-100" />
 
-            {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">
@@ -48,7 +45,6 @@ const ExerciseCard = ({ name, sets, reps, weight, date, onEdit, onDelete }) => {
                 </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-2">
                 <button
                     onClick={onEdit}

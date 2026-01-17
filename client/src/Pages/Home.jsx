@@ -3,7 +3,6 @@ import Navbar from "../Components/Navbar";
 import { Hero } from "../Components/Hero";
 
 function Home() {
-  // State for workout and calorie data
   const [workoutData, setWorkoutData] = useState({
     today: { calories: 420, workoutTime: 45, workouts: 3 },
     week: { calories: 3150, workoutTime: 315, workouts: 21 },
@@ -49,7 +48,6 @@ function Home() {
 
   const [timeFrame, setTimeFrame] = useState("today");
 
-  // Function to handle adding a new workout
   const addWorkout = () => {
     const newWorkout = {
       id: recentWorkouts.length + 1,
@@ -60,7 +58,6 @@ function Home() {
     };
     setRecentWorkouts([newWorkout, ...recentWorkouts.slice(0, 3)]);
 
-    // Update today's stats
     setWorkoutData({
       ...workoutData,
       today: {
@@ -71,7 +68,6 @@ function Home() {
     });
   };
 
-  // Function to calculate goal progress percentage
   const calculateProgress = (current, target) => {
     return Math.min(Math.round((current / target) * 100), 100);
   };
@@ -82,13 +78,11 @@ function Home() {
       <Hero />
 
       <main className="container mx-auto px-4 py-8">
-        {/* Stats Overview Section */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-white">
             Fitness Overview
           </h2>
 
-          {/* Time frame selector */}
           <div className="flex space-x-4 mb-6">
             {["today", "week", "month"].map((frame) => (
               <button
@@ -105,7 +99,6 @@ function Home() {
             ))}
           </div>
 
-          {/* Stats cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-800">
               <div className="flex items-center justify-between mb-4">
@@ -194,7 +187,6 @@ function Home() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Recent Workouts Section */}
           <div className="bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-800">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-white">Recent Workouts</h2>
@@ -327,12 +319,10 @@ function Home() {
             </button>
           </div>
 
-          {/* Goals Progress Section */}
           <div className="bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-800">
             <h2 className="text-xl font-bold text-white mb-6">Today's Goals</h2>
 
             <div className="space-y-6">
-              {/* Calories Goal */}
               <div>
                 <div className="flex justify-between mb-2">
                   <h3 className="font-medium text-gray-300">Calories Burned</h3>
@@ -360,7 +350,6 @@ function Home() {
                 </p>
               </div>
 
-              {/* Workouts Goal */}
               <div>
                 <div className="flex justify-between mb-2">
                   <h3 className="font-medium text-gray-300">
@@ -390,7 +379,6 @@ function Home() {
                 </p>
               </div>
 
-              {/* Active Minutes Goal */}
               <div>
                 <div className="flex justify-between mb-2">
                   <h3 className="font-medium text-gray-300">Active Minutes</h3>
@@ -419,7 +407,6 @@ function Home() {
               </div>
             </div>
 
-            {/* Weekly Overview */}
             <div className="mt-10">
               <h3 className="font-bold text-white mb-4">Weekly Activity</h3>
               <div className="flex items-end justify-between h-32">
@@ -446,7 +433,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Quick Stats Section */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-4 rounded-xl">
             <p className="text-gray-400 text-sm">Avg. Heart Rate</p>
@@ -473,7 +459,6 @@ function Home() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="mt-12 py-6 border-t border-gray-800 text-center text-gray-500 text-sm">
         <p>
           Fitness Tracker • Stay Active, Stay Healthy •{" "}

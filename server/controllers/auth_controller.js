@@ -21,14 +21,12 @@ async function registerUser(req, res) {
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(password, salt);
 
-    // 1️⃣ Create user
     const userData = await UserModel.create({
         name,
         email,
         password: encryptedPassword
     });
 
-    // 2️⃣ Create initial weight entry
     await WeightModel.create({
         user_id: userData._id,
         weight: weight

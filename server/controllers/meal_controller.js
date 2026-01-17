@@ -4,7 +4,7 @@ async function getAllMealOfUser(req, res) {
     try {
         var userId = req.params.id
         var meals = await MealModel.find({ user_id: userId })
-            .sort({ date: -1, time: -1 }) // Sort by most recent
+            .sort({ date: -1, time: -1 }) 
 
         if (!meals || meals.length === 0) {
             res.status(404).json({ message: "No Meal Found. Add a new Meal" })
@@ -22,20 +22,17 @@ async function postMeal(req, res) {
     try {
         var { user_id, mealType, foodName, calories, description, time } = req.body;
 
-        // Validate required fields
         if (!user_id || !mealType || !foodName || !calories) {
             res.status(400).json({ message: "User ID, meal type, food name, and calories are required" })
             return
         }
 
-        // Validate mealType enum
         const validMealTypes = ["Breakfast", "Lunch", "Dinner", "Snacks"]
         if (!validMealTypes.includes(mealType)) {
             res.status(400).json({ message: "Invalid meal type. Must be Breakfast, Lunch, Dinner, or Snacks" })
             return
         }
 
-        // Validate calories is a positive number
         if (isNaN(calories) || calories < 0) {
             res.status(400).json({ message: "Calories must be a positive number" })
             return

@@ -55,14 +55,12 @@ function LoginPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#040D12] via-[#0a1a1a] to-[#183D3D] text-white overflow-hidden">
-            {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-cyan-900/20 to-teal-900/10 rounded-full blur-3xl"></div>
                 <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-emerald-900/10 to-[#183D3D]/20 rounded-full blur-3xl"></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-900/5 to-teal-900/5 rounded-full blur-3xl"></div>
             </div>
 
-            {/* Floating particles */}
             <div className="absolute inset-0">
                 {[...Array(20)].map((_, i) => (
                     <div
@@ -80,7 +78,6 @@ function LoginPage() {
 
             <div className="relative w-full max-w-6xl mx-auto px-4 py-8">
                 <div className="grid lg:grid-cols-2 items-center gap-8 lg:gap-12">
-                    {/* Left side - Image and welcome message */}
                     <div className="relative">
                         <div className="relative overflow-hidden rounded-3xl border border-gray-800/50 shadow-2xl">
                             <img
@@ -88,10 +85,8 @@ function LoginPage() {
                                 className="w-full h-[600px] object-cover transform hover:scale-105 transition-transform duration-700"
                                 alt="Fitness motivation"
                             />
-                            {/* Gradient overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-[#040D12]/90 via-transparent to-transparent"></div>
 
-                            {/* Text overlay */}
                             <div className="absolute bottom-0 left-0 right-0 p-8">
                                 <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-teal-500/20 border border-cyan-500/30 mb-4 backdrop-blur-sm">
                                     <span className="h-2 w-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
@@ -120,7 +115,6 @@ function LoginPage() {
                             </div>
                         </div>
 
-                        {/* Floating stats cards */}
                         <div className="absolute -right-6 top-1/4 hidden lg:block">
                             <div className="bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-800/50 shadow-xl w-56 transform hover:scale-105 transition-transform duration-300">
                                 <div className="flex items-center">
@@ -138,10 +132,8 @@ function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Right side - Login form */}
                     <div className="relative">
                         <div className="bg-gray-900/70 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-gray-800/50 shadow-2xl">
-                            {/* Header */}
                             <div className="text-center mb-10">
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#183D3D] to-cyan-900 mb-6">
                                     <svg className="w-8 h-8 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,7 +147,6 @@ function LoginPage() {
                             </div>
 
                             <form className="space-y-8" onSubmit={handleSubmit}>
-                                {/* Email field */}
                                 <div>
                                     <label className="block text-sm font-medium mb-3 text-gray-300">
                                         Email Address
@@ -180,7 +171,6 @@ function LoginPage() {
                                     </div>
                                 </div>
 
-                                {/* Password field */}
                                 <div>
                                     <label className="block text-sm font-medium mb-3 text-gray-300">
                                         Password
@@ -221,14 +211,12 @@ function LoginPage() {
                                     </div>
                                 </div>
 
-                                {/* Forgot password link */}
                                 <div className="flex justify-end">
                                     <a href="#" className="text-sm text-cyan-400 hover:text-cyan-300 hover:underline transition-colors duration-200">
                                         Forgot your password?
                                     </a>
                                 </div>
 
-                                {/* Submit button */}
                                 <div className="pt-4">
                                     <button
                                         type="submit"
@@ -254,39 +242,10 @@ function LoginPage() {
                                     </button>
                                 </div>
 
-                                {/* Divider */}
-                                <div className="relative py-4">
-                                    <div className="absolute inset-0 flex items-center">
-                                        <div className="w-full border-t border-gray-800"></div>
-                                    </div>
-                                    <div className="relative flex justify-center">
-                                        <span className="px-4 bg-gray-900/70 text-sm text-gray-500">Or continue with</span>
-                                    </div>
-                                </div>
+                                
 
-                                {/* Social login options */}
-                                <div className="grid grid-cols-2 gap-4">
-                                    <button
-                                        type="button"
-                                        className="flex items-center justify-center py-3 px-4 rounded-xl border border-gray-700/50 hover:border-gray-600 hover:bg-gray-800/50 transition-all duration-300 group"
-                                    >
-                                        <svg className="w-5 h-5 mr-3 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                        </svg>
-                                        <span className="text-sm font-medium group-hover:text-white transition-colors duration-300">Facebook</span>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="flex items-center justify-center py-3 px-4 rounded-xl border border-gray-700/50 hover:border-gray-600 hover:bg-gray-800/50 transition-all duration-300 group"
-                                    >
-                                        <svg className="w-5 h-5 mr-3 text-red-400" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032 s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2 C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
-                                        </svg>
-                                        <span className="text-sm font-medium group-hover:text-white transition-colors duration-300">Google</span>
-                                    </button>
-                                </div>
+                                
 
-                                {/* Sign up link */}
                                 <div className="text-center pt-8 border-t border-gray-800/50">
                                     <p className="text-gray-400">
                                         Don't have an account?{" "}
@@ -298,7 +257,6 @@ function LoginPage() {
                             </form>
                         </div>
 
-                        {/* Decorative elements */}
                         <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-full blur-xl"></div>
                         <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-tr from-[#183D3D]/10 to-cyan-900/10 rounded-full blur-xl"></div>
                     </div>
